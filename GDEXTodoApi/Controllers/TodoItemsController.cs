@@ -9,7 +9,7 @@ using GDEXTodoApi.Models;
 
 namespace GDEXTodoApi.Controllers
 {
-    [Route("api/[TodoItems]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {

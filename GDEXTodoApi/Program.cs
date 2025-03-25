@@ -16,6 +16,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<TodoContext>();
+    DbInitializer.SeedItems(context);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

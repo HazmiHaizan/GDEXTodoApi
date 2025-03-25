@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GDEXTodoApi.Models;
+using Sieve.Models;
+using Sieve.Services;
 
 namespace GDEXTodoApi.Controllers
 {
@@ -14,17 +16,23 @@ namespace GDEXTodoApi.Controllers
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
+        private readonly SieveProcessor _sieveProcessor;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(TodoContext context, SieveProcessor sieveProcessor)
         {
             _context = context;
+            _sieveProcessor = sieveProcessor;
         }
 
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems([FromQuery] SieveModel sieveModel)
         {
-            return await _context.TodoItems.ToListAsync();
+            var items = _context.TodoItems.AsNoTracking();
+
+            var res = _sieveProcessor.Apply(sieveModel, items);
+
+            return await res.ToListAsync();
         }
 
         // GET: api/TodoItems/5

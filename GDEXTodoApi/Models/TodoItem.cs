@@ -14,7 +14,7 @@ namespace GDEXTodoApi.Models
         public string Description { get; set; }
 
         [Sieve(CanFilter = true, CanSort = true)]
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
 
         [Sieve(CanFilter = true, CanSort = true)]
         public string Status { get; set; }

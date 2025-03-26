@@ -18,5 +18,11 @@ namespace GDEXTodoApi.Models
 
         [Sieve(CanFilter = true, CanSort = true)]
         public string Status { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public string Category { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public string Priority { get; set; }
     }
 }

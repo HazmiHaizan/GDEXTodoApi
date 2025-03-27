@@ -1,4 +1,5 @@
 ﻿using Sieve.Attributes;
+using System.ComponentModel;
 
 namespace GDEXTodoApi.Models
 {
@@ -13,6 +14,7 @@ namespace GDEXTodoApi.Models
         [Sieve(CanFilter = true, CanSort = true)]
         public string Description { get; set; }
 
+        [DefaultValue("22/3/2025")]
         [Sieve(CanFilter = true, CanSort = true)]
         public string DueDate { get; set; }
 
